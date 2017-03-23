@@ -1,8 +1,8 @@
-
-  "execute pathogen#infect()         "config syntastic
-
 " General Setting {
   let mapleader= ","
+
+  imap jk <ESC>
+  map ls :ls<CR>
 
   set encoding=utf8
 
@@ -29,6 +29,7 @@
   set clipboard+=unnamed  "同window 共享剪贴板
 
 
+  " 用空格键来开关折叠
   set foldenable
   "set foldmethod=manual
   "set foldmethod=syntax
@@ -39,8 +40,6 @@
   "command in normal mode.
   au BufRead * normal zR
 
-
-  " 用空格键来开关折叠
   nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc':'zo')<CR>
 
   " hightlight col and line
@@ -56,14 +55,6 @@
     colorscheme solarized
   " }
 
-  imap jk <ESC>          " 使用 jk 替换 ESC
-  map ls :ls<CR>         " 使用 ls 直接 列出已打开的文件
-
-  " tab action
-  "nmap <Leader>nt :tabnew<CR>
-  "nmap <TAB> :tabn<CR>
-
-
   " remember the line i was on when reopen file
   if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -72,10 +63,6 @@
   " Every time the user issues a :w command, Vim will automatically remove all
   " trailing whitespace before saving.
   "autocmd BufWritePre * %s/\s\+$//e
-
-  " retain the visual selection after having pressed > or <
-  "vnoremap > >gv
-  "vnoremap < <gv
 " }
 
 
@@ -96,22 +83,24 @@
       "Plugin 'altercation/vim-colors-solarized'
       Plugin 'flazz/vim-colorschemes'
 
-      Plugin 'scrooloose/nerdtree'            "文件树形结构
+      Plugin 'easymotion/vim-easymotion'
+
+      Plugin 'scrooloose/nerdtree'
       Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-      Plugin 'ctrlpvim/ctrlp.vim'             "全局查找文件
+      Plugin 'ctrlpvim/ctrlp.vim'
 
-      Plugin 'easymotion/vim-easymotion'      "快速,准确移动光标
+      Plugin 'majutsushi/tagbar'
 
-      Plugin 'majutsushi/tagbar'              "配合ctags使用
+      "Plugin 'Valloric/YouCompleteMe'
 
-      "Plugin 'Valloric/YouCompleteMe'        "自动补全
-
-      Plugin 'terryma/vim-multiple-cursors'   "多光标
+      Plugin 'terryma/vim-multiple-cursors'
 
       Plugin 'tpope/vim-rails'
 
-      Plugin 'iamcco/dict.vim'                "字典翻译
+      Plugin 'dkprice/vim-easygrep'
+
+      Plugin 'iamcco/dict.vim'
 
       "Plugin 'MarcWeber/vim-addon-mw-utils'
       "Plugin 'tomtom/tlib_vim'
@@ -119,12 +108,9 @@
       " Optional:
       "Plugin 'honza/vim-snippets'    "contain much languages snippets templates
 
-      " Align text on an equal sign, 根据等号等对其
+      " Align text on an equal sign
       " http://stackoverflow.com/questions/8964953/align-text-on-an-equal-sign-with-vim
       Plugin 'godlygeek/tabular'
-
-      " syntax checking plugin, 语法检测
-      "Plugin 'vim-syntastic/syntastic'
 
       "git plugin
       Plugin 'tpope/vim-fugitive'
@@ -157,7 +143,6 @@
     hi link EasyMotionShade Comment
   " }
 
-
   " ctrlp setting {
     " ctrl + p
     "let g:ctrlp_map = '<c-p>'
@@ -177,7 +162,6 @@
     "let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
   " }
 
-
   " tagbar setting {
     " ctrl + p
     "let g:ctrlp_map = '<c-p>'
@@ -188,7 +172,6 @@
     "生成一个tags文件
     nmap <F9> <Esc>:!ctags -R *<CR>
   " }
-
 
   " NerdTree setting{
     "set runtimepath^=~/.vim/bundle/nerdtree
@@ -204,7 +187,6 @@
         "nmap <leader>nt :NERDTreeFind<CR>
         "nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
   " }
-
 
   " dict setting{
     nmap <silent> <Leader>d <Plug>DictSearch
@@ -224,43 +206,6 @@
     nmap <Leader>a: :Tabularize /=>\zs<CR>
     vmap <Leader>a: :Tabularize /=>\zs<CR>
   endif
-  " }
-
-
-  " syntastic setting {
-  "set statusline+=%#warningmsg#
-  "set statusline+=%{SyntasticStatuslineFlag()}
-  "set statusline+=%*
-
-  "let g:syntastic_always_populate_loc_list = 1
-  "let g:syntastic_auto_loc_list = 1
-  "let g:syntastic_check_on_open = 1
-  "let g:syntastic_check_on_wq = 0
-  "let g:syntastic_error_symbol='>>'
-
-  "let g:syntastic_warning_symbol='>'
-  "let g:syntastic_enable_highlighting=1
-  "let g:syntastic_ruby_checkers = ['rubocop']
-  "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-  "let g:syntastic_html_checkers=['tidy', 'jshint']
-  " 修改高亮的背景色, 适应主题
-  "highlight SyntasticErrorSign guifg=white guibg=black
-
-  " to see error location list
-  "let g:syntastic_always_populate_loc_list = 0
-  "let g:syntastic_loc_list_height = 2
-  "function! ToggleErrors()
-  "    let old_last_winnr = winnr('$')
-  "    lclose
-  "    if old_last_winnr == winnr('$')
-  "        " Nothing was closed, open syntastic error location panel
-  "        Errors
-  "    endif
-  "endfunction
-
-  "nnoremap <Leader>s :call ToggleErrors()<cr>
-  "nnoremap <Leader>sn :lnext<cr>
-  "nnoremap <Leader>sp :lprevious<cr>
   " }
 
   " 文件过大; 大于200 KB(大小可以自己设定)
