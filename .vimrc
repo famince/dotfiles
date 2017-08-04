@@ -141,6 +141,14 @@
     hi link EasyMotionTarget2First Search
     hi link EasyMotionTarget2Second Search
     hi link EasyMotionShade Comment
+
+    let g:EasyMotion_do_mapping = 0 " Disable default mappings
+    let g:EasyMotion_smartcase = 1
+
+    nmap s <Plug>(easymotion-overwin-f2)
+
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
   " }
 
   " ctrlp setting {
