@@ -16,8 +16,8 @@
   set expandtab           "展开tab为空格
   set autoindent          "自动格式对齐
   set smartindent         "智能选择对齐方式
-  set softtabstop=2       "设置tab键为n个空格
-  set shiftwidth=2        "设置当行之间交错时使用n个空格
+  set softtabstop=8       "设置tab键为n个空格
+  set shiftwidth=4        "设置当行之间交错时使用n个空格
   set showmatch           "设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
   set vb t_vb=            "当vim进行编辑时，如果命令错误，会发出一个响声，该设置去掉响声
   set ruler               "在编辑过程中，在右下角显示光标位置的状态行
@@ -27,6 +27,10 @@
   set backspace=2         " make backspace work like most other apps
   "set backspace=indent,eol,starta " Alternately
   set clipboard+=unnamed  "同window 共享剪贴板
+
+  "全局检索光标下字符
+  "autocmd filetype qf wincmd J         "全屏显示quickfix
+  nnoremap <leader>f :vimgrep /\<<c-r><c-w>\>/j **/*.c **/*.cpp **/*.h <Bar> :copen <CR>
 
 
   " 用空格键来开关折叠
@@ -51,7 +55,7 @@
     syntax enable
     let g:solarized_termcolors=256
     set t_Co=256
-    set background=dark
+    "set background=dark
     colorscheme solarized
   " }
 
