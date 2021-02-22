@@ -51,7 +51,7 @@
   set cursorcolumn
 
   " colorscheme {
-    " cp ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/
+    " cd ~/.vim;mkdir colors;cp ~/.vim/bundle/vim-colorschemes/colors/solarized.vim ~/.vim/colors/
     syntax enable
     let g:solarized_termcolors=256
     set t_Co=256
