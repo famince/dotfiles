@@ -1,0 +1,14 @@
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+ 
+# some git aliases
+alias gst='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gcm='git commit -m '
+alias gd='git diff '
+alias go='git checkout '
+alias gpl='git pull'
+alias gps='git push'
