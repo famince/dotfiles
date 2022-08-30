@@ -1,0 +1,13 @@
+[user] 
+    name = alex
+
+[alias]
+    co = checkout
+    cm = commit -m
+    pl = pull
+    ps = push
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    unstage = reset HEAD --
+    last = log -1 HEAD

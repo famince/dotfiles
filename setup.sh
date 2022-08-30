@@ -14,6 +14,7 @@ mv ~/.zshrc ~/dotfiles_old/
 
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.bash_mine ~/.bash_mine
 ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
 
 echo "Success"
