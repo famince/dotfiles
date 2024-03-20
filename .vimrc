@@ -5,6 +5,8 @@
   map ls :ls<CR>
 
   set encoding=utf8
+  "set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
+  set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 
   set regexpengine=1
   set lazyredraw          "open it when vim run slow
@@ -71,73 +73,60 @@
 
 
 " plugin setting {
-  " vundle setting {
-    set nocompatible        " be iMproved, required
-    filetype off            " require
+    call plug#begin()
 
-    " set the runtime path to include Vundle and initialize
-      set rtp+=~/.vim/bundle/Vundle.vim
-      call vundle#begin()
-      " alternatively, pass a path where Vundle should install plugins
-      "call vundle#begin('~/some/path/here')
+    Plug 'junegunn/vim-easy-align'
 
-      " let Vundle manage Vundle, required
-      Plugin 'VundleVim/Vundle.vim'
+    "Plugin 'altercation/vim-colors-solarized'
+    Plug 'flazz/vim-colorschemes'
 
-      "Plugin 'altercation/vim-colors-solarized'
-      Plugin 'flazz/vim-colorschemes'
+    Plug 'easymotion/vim-easymotion'
 
-      Plugin 'easymotion/vim-easymotion'
+    Plug 'scrooloose/nerdtree'
+    "Plug 'Xuyuanp/nerdtree-git-plugin'
 
-      Plugin 'scrooloose/nerdtree'
-      Plugin 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ctrlpvim/ctrlp.vim'
 
-      Plugin 'ctrlpvim/ctrlp.vim'
+    Plug 'majutsushi/tagbar'
 
-      Plugin 'majutsushi/tagbar'
+    "Plug 'Valloric/YouCompleteMe'
+    "Plug 'zxqfl/tabnine-vim'
 
-      "Plugin 'Valloric/YouCompleteMe'
+    Plug 'terryma/vim-multiple-cursors'
 
-      Plugin 'terryma/vim-multiple-cursors'
+    "Plug 'tpope/vim-rails'
 
-      Plugin 'tpope/vim-rails'
+    Plug 'dkprice/vim-easygrep'
 
-      Plugin 'dkprice/vim-easygrep'
+    Plug 'iamcco/dict.vim'
 
-      Plugin 'iamcco/dict.vim'
+    Plug 'ludovicchabant/vim-gutentags'
 
-      Plugin 'ludovicchabant/vim-gutentags'
+    "Plug 'MarcWeber/vim-addon-mw-utils'
+    "Plug 'tomtom/tlib_vim'
+    "Plug 'garbas/vim-snipmate'
+    " Optional:
+    "Plug 'honza/vim-snippets'    "contain much languages snippets templates
 
-      "Plugin 'MarcWeber/vim-addon-mw-utils'
-      "Plugin 'tomtom/tlib_vim'
-      "Plugin 'garbas/vim-snipmate'
-      " Optional:
-      "Plugin 'honza/vim-snippets'    "contain much languages snippets templates
+    " Align text on an equal sign
+    " http://stackoverflow.com/questions/8964953/align-text-on-an-equal-sign-with-vim
+    Plug 'godlygeek/tabular'
 
-      " Align text on an equal sign
-      " http://stackoverflow.com/questions/8964953/align-text-on-an-equal-sign-with-vim
-      Plugin 'godlygeek/tabular'
+    "git plugin
+    Plug 'tpope/vim-fugitive'
 
-      "git plugin
-      Plugin 'tpope/vim-fugitive'
+    Plug 'Lokaltog/vim-powerline'
 
-      Plugin 'Lokaltog/vim-powerline'
+    Plug 'Vimjas/vim-python-pep8-indent'
 
-      " All of your Plugins must be added before the following line
-      call vundle#end()            " required
-      filetype plugin indent on    " required
-      " To ignore plugin indent changes, instead use:
-      "filetype plugin on
-      "
-      " Brief help
-      " :PluginList       - lists configured plugins
-      " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-      " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-      " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-      "
-      " see :h vundle for more details or wiki for FAQ
-      " Put your non-Plugin stuff after this line
-    " }
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+    " Initialize plugin system
+    " - Automatically executes `filetype plugin indent on` and `syntax enable`.
+    call plug#end()
+    " You can revert the settings after the call like so:
+    "   filetype indent off   " Disable file-type-specific indentation
+    "   syntax off            " Disable syntax highlighting
   " }
 
   " easymotion setting {
@@ -244,8 +233,15 @@
   " powerline setting {
     set nocompatible   " Disable vi-compatibility
     set laststatus=2   " Always show the statusline
-    set encoding=utf-8 " Necessary to show Unicode glyphs
+    "set encoding=utf-8 " Necessary to show Unicode glyphs
     set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+  " }
+
+  " coc-markmap setting {
+    " Create markmap from the whole file
+    nmap <Leader>m <Plug>(coc-markmap-create)
+    " Create markmap from the selected lines
+    vmap <Leader>m <Plug>(coc-markmap-create-v)
   " }
 
 " }
